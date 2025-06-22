@@ -1,6 +1,11 @@
+from dotenv import load_dotenv
 import streamlit as st
+from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from pypdf import PdfReader
+from langchain.vectorstores import FAISS
+
+load_dotenv()
 
 # Upload pdf files
 st.header("My AI Chatbot")
@@ -23,4 +28,12 @@ if file is not None:
     )
 
     chunks = text_splitter.split_text(text)
-    st.write(chunks)
+    # st.write(chunks)
+
+    # Generating Embeddings
+    embeddings = OpenAIEmbeddings()
+
+    # Creating Vector Store = FAISS
+    vector_stores = FAISS.from_texts(chunks, embeddings)
+
+    # Get user questions
