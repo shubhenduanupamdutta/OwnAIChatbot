@@ -4,4 +4,9 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "faiss-cpu>=1.11.0",
+    "langchain>=0.3.26",
+    "pypdf>=5.6.1",
+    "streamlit>=1.46.0",
+]
